@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Task</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <%- include('navbar', { activePage: '' }) %>
+
+  <div class="container">
+    <h1 class="page-title">Update Task</h1>
+
+    <% if (task) { %>
+      <form class="todo-form" action="/update/<%= task._id %>" method="POST">
+        <div class="form-group">
+          <input
+            type="text"
+            name="title"
+            class="input"
+            placeholder="Enter task title"
+            value="<%= task.title %>"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <textarea
+            name="description"
+            class="input"
+            placeholder="Enter task description"
+            rows="4"
+            required
+          ><%= task.description %></textarea>
+        </div>
+
+        <div class="form-group">
+          <button class="btn" type="submit">Update Task</button>
+        </div>
+      </form>
+    <% } else { %>
+      <p class="no-tasks">Task not found or has been deleted.</p>
+    <% } %>
+  </div>
+</body>
+</html>
 
