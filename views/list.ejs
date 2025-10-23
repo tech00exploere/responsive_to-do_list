@@ -1,1 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task List</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <%- include('navbar', { activePage: 'list' }) %>
+
+  <div class="container">
+    <h1 class="page-title">Task List</h1>
+
+    <% if (!result || result.length === 0) { %>
+      <p class="no-tasks">No tasks found. Add one to get started!</p>
+    <% } else { %>
+      <ul class="task-container">
+        <% result.forEach(task => { %>
+          <li class="task-item">
+            <div class="task-info">
+              <h3 class="task-title"><%= task.title %></h3>
+              <p class="task-description"><%= task.description %></p>
+            </div>
+
+            <div class="task-actions">
+              <a href="/update/<%= task._id %>" class="edit-item">✏️ Update</a>
+              <a href="/delete/<%= task._id %>" class="delete-item" onclick="return confirm('Are you sure you want to delete this task?')">🗑️ Delete</a>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+</body>
+</html>
 
